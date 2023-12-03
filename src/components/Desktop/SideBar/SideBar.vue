@@ -1,6 +1,6 @@
 <template>
   <div class="relative">
-    <img src="../../assets/images/bg-sidebar-desktop.svg" alt="" class="relative">
+    <img src="../../../assets/images/bg-sidebar-desktop.svg" alt="" class="relative">
 
     <div class="absolute top-10 left-5 flex flex-col justify-center items-start gap-8">
 
