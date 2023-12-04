@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-10 pr-20">
+  <div class="mt-10 w-[500px] pr-5">
     <header>
         <h1 class="text-3xl font-bold tracking-wide text-slate-700">Personal info</h1>
         <p class="text-slate-500 mt-2">Please provide your name, email address and phone number.</p>
@@ -49,7 +49,7 @@
         </div>
     </form>
 
-    <div class="mt-16 flex justify-between mr-20">
+    <div class="mt-16 flex justify-between items-center ">
       <BackBtn></BackBtn>
       <div class="ml-auto">
         <NextBtn @infoSubmit="infoSubmit"></NextBtn>

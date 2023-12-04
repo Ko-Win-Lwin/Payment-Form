@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
+
 import { useStepStore } from '../stores/step';
 
 defineEmits(['infoSubmit'])
