@@ -8,7 +8,7 @@ export const useStepStore = defineStore("step" , {
 
     actions: {
         nextStep() {
-            if (this.step > 4) {
+            if (this.step == 4) {
                 this.backStep()
                 return
             }

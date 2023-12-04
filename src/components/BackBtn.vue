@@ -1,6 +1,6 @@
 <template>
 <div :class="{'hidden': currentStep.$state.step == 1}">
-    <button @click="goBack" class="text-slate-500 px-5 py-2">Go Back</button>
+    <button @click="goBack" class="text-slate-600 px-5 py-2">Go Back</button>
 </div>  
 </template>
 

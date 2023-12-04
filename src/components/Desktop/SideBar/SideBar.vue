@@ -7,7 +7,7 @@
       <SideBarTab>
         <div class="border text-white text-sm font-semibold rounded-full w-[35px] h-[35px] flex justify-center items-center"
         :class="{'bg-green-200': currentStep.$state.step == 1}">
-          <p>1</p>
+          <p :class="{'text-slate-600': currentStep.$state.step == 1}">1</p>
         </div>
         <template #stepNum>Step 1</template>
         <template #stepName>Your Info</template>
@@ -16,7 +16,7 @@
       <SideBarTab>
         <div class="border text-white text-sm font-semibold rounded-full w-[35px] h-[35px] flex justify-center items-center"
         :class="{'bg-green-200': currentStep.$state.step == 2}">
-          <p>2</p>
+          <p :class="{'text-slate-600': currentStep.$state.step == 2}">2</p>
         </div>
         <template #stepNum>Step 2</template>
         <template #stepName>Select Plan</template>
@@ -25,7 +25,7 @@
       <SideBarTab>
         <div class="border text-white text-sm font-semibold rounded-full w-[35px] h-[35px] flex justify-center items-center"
         :class="{'bg-green-200': currentStep.$state.step == 3}">
-          <p>3</p>
+          <p :class="{'text-slate-600': currentStep.$state.step == 3}">3</p>
         </div>
         <template #stepNum>Step 3</template>
         <template #stepName>Add-Ons</template>
@@ -34,7 +34,7 @@
       <SideBarTab>
         <div class="border text-white text-sm font-semibold rounded-full w-[35px] h-[35px] flex justify-center items-center"
         :class="{'bg-green-200': currentStep.$state.step == 4}">
-          <p>4</p>
+          <p :class="{'text-slate-600': currentStep.$state.step == 4}">4</p>
         </div>
         <template #stepNum>Step 4</template>
         <template #stepName>Summary</template>

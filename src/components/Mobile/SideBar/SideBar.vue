@@ -7,7 +7,7 @@
       <SideBarTab>
         <div class="border text-white text-sm font-semibold rounded-full w-[35px] h-[35px] flex justify-center items-center"
         :class="{'bg-green-200': currentStep.$state.step == 1}">
-            <p id="step text-white">
+            <p id="step" :class="{'text-slate-600':currentStep.$state.step == 1}">
                 1
             </p>
         </div>
@@ -16,7 +16,7 @@
       <SideBarTab>
         <div class="border text-white text-sm font-semibold rounded-full w-[35px] h-[35px] flex justify-center items-center"
         :class="{'bg-green-200': currentStep.$state.step == 2}">
-            <p id="step text-white">
+            <p id="step" :class="{'text-slate-600':currentStep.$state.step == 2}">
                 2
             </p>
         </div>
@@ -25,7 +25,7 @@
       <SideBarTab>
         <div class="border text-white text-sm font-semibold rounded-full w-[35px] h-[35px] flex justify-center items-center"
         :class="{'bg-green-200': currentStep.$state.step == 3}">
-            <p id="step text-white">
+            <p id="step " :class="{'text-slate-600':currentStep.$state.step == 3}">
                 3
             </p>
         </div>
@@ -34,7 +34,7 @@
       <SideBarTab>
         <div class="border text-white text-sm font-semibold rounded-full w-[35px] h-[35px] flex justify-center items-center"
         :class="{'bg-green-200': currentStep.$state.step == 4}">
-            <p id="step text-white">
+            <p id="step" :class="{'text-slate-600':currentStep.$state.step == 4}">
                 4
             </p>
         </div>
