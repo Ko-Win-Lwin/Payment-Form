@@ -12,15 +12,6 @@ defineEmits(['infoSubmit'])
 
 const currentStep = useStepStore();
 
-const nextStep = () => {
-  currentStep.nextStep()
-  console.log(currentStep.$state.step)
-}
-
-onMounted(() => {
-  console.log(currentStep.$state.step)
-})
-
 
 </script>
 
