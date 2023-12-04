@@ -1,9 +1,7 @@
 <template>
   <div class="flex justify-between items-center gap-5 uppercase">
-        <div class="border text-white text-sm font-semibold rounded-full w-[35px] h-[35px] flex justify-center items-center">
-            <p id="step text-white">
-                <slot name="step"></slot>
-            </p>
+        <div>
+          <slot></slot>
         </div>
 
         <div class="text-[12px] text-white ">

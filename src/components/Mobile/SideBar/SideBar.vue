@@ -5,26 +5,49 @@
     <div class="absolute top-10 left-[50%] translate-x-[-50%] flex justify-center items-center">
 
       <SideBarTab>
-        <template #step>1</template>
+        <div class="border text-white text-sm font-semibold rounded-full w-[35px] h-[35px] flex justify-center items-center"
+        :class="{'bg-green-200': currentStep.$state.step == 1}">
+            <p id="step text-white">
+                1
+            </p>
+        </div>
       </SideBarTab>
 
       <SideBarTab>
-        <template #step>2</template>
+        <div class="border text-white text-sm font-semibold rounded-full w-[35px] h-[35px] flex justify-center items-center"
+        :class="{'bg-green-200': currentStep.$state.step == 2}">
+            <p id="step text-white">
+                2
+            </p>
+        </div>
       </SideBarTab>
 
       <SideBarTab>
-        <template #step>3</template>
+        <div class="border text-white text-sm font-semibold rounded-full w-[35px] h-[35px] flex justify-center items-center"
+        :class="{'bg-green-200': currentStep.$state.step == 3}">
+            <p id="step text-white">
+                3
+            </p>
+        </div>
       </SideBarTab>
 
       <SideBarTab>
-        <template #step>4</template>
+        <div class="border text-white text-sm font-semibold rounded-full w-[35px] h-[35px] flex justify-center items-center"
+        :class="{'bg-green-200': currentStep.$state.step == 4}">
+            <p id="step text-white">
+                4
+            </p>
+        </div>
       </SideBarTab>
     </div>
   </div>
 </template>
 
 <script setup>
+import { useStepStore } from '../../../stores/step';
 import SideBarTab from './SideBarTab.vue';
+
+const currentStep = useStepStore()
 </script>
 
 <style scoped>
