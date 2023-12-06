@@ -3,7 +3,7 @@ import { defineStore } from "pinia";
 
 export const useStepStore = defineStore("step" , {
     state: () => ({
-        step: 2
+        step: 3
     }),
 
     actions: {

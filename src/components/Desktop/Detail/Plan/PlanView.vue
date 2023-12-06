@@ -56,11 +56,11 @@
       </div>
 
       <div class="mt-32 flex justify-between items-center ">
-      <BackBtn></BackBtn>
-      <div class="ml-auto">
-        <NextBtn @infoSubmit="infoSubmit"></NextBtn>
+        <BackBtn></BackBtn>
+        <div class="ml-auto">
+          <NextBtn @infoSubmit="infoSubmit"></NextBtn>
+        </div>
       </div>
-    </div>
 
     </div>
 </template>

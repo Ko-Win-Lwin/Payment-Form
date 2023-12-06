@@ -51,7 +51,7 @@
 
 
 
-    <div class="flex justify-center items-center mt-20 absolute right-0 w-full">
+    <div class="flex justify-center items-center mt-[96px] absolute right-0 w-full">
         <div class="flex w-full  h-full">
             <BackBtn></BackBtn>
             <div class="ml-auto">
