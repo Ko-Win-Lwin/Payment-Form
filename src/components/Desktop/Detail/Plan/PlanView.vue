@@ -8,7 +8,7 @@
       <div class="mt-10">
         <div class="flex justify-between items-center">
           <div v-for="plan in plans" :key="plan">
-            <PlanCard>
+            <PlanCard  :plan="plan" :isMonthly="isMonthly">
               <img :src="getImageUrl(plan['name'])"  alt="" class="w-[40px]">
               <template #planName>
                 <span>{{ plan['name'] }}</span>
@@ -41,33 +41,56 @@
           <NextBtn @infoSubmit="infoSubmit"></NextBtn>
         </div>
       </div>
-
     </div>
 </template>
 
   
 <script setup>
 
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
+import { useUserStore } from '../../../../stores/user';
 import BackBtn from '../../../BackBtn.vue';
 import NextBtn from '../../../NextBtn.vue';
 import PlanCard from './PlanCard.vue';
-
-const plans = ref([
-  { 'name' : 'arcade', 'price' : 9 },
-  { 'name' : 'advanced', 'price' : 12 },
-  { 'name' : 'pro', 'price' : 15 } 
-])
 
 const getImageUrl = (img) => {
   return `/src/assets/images/icon-${img}.svg`
 }
 
+
+const plans = ref([
+  { 'name' : 'arcade', 'price' : 9, 'isSelected' : false },
+  { 'name' : 'advanced', 'price' : 12, 'isSelected' : false },
+  { 'name' : 'pro', 'price' : 15 , 'isSelected' : false,  } 
+])
+
+const choosedPlans = ref([])
 const isMonthly = ref(true);
 
 const toggleMonthAndYear = () => {
   isMonthly.value = !isMonthly.value
 }
 
+
+const userStore = useUserStore();
+
+const infoSubmit = () => {
+  if (!isMonthly.value) {
+    choosedPlans.value = computed(() => {
+    const monthlyPlan = plans.value.map(plan => {
+      return { ...plan, price: plan.price * 10 }
+    })
+
+    return monthlyPlan.filter(plan => plan.isSelected )
+  })
+  }
+
+  else {
+    choosedPlans.value = computed(() => {
+      return plans.value.filter(plan => plan.isSelected )
+    })
+  }
+  userStore.$state.user.plan = choosedPlans.value
+}
 
 </script>

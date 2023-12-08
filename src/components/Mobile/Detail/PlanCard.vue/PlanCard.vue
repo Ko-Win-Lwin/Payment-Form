@@ -1,5 +1,5 @@
 <template>
-    <div  @click="selectCard" class="border rounded-lg  px-3 py-5 flex items-center gap-5" :class="{'border-blue-900': activeCard}">
+    <div  @click="$emit('selectCard')" class="border rounded-lg  px-3 py-5 flex items-center gap-5" :class="{'border-blue-900': activeCard}">
         <slot></slot>
 
         <div class="">
@@ -18,8 +18,6 @@
 import { ref } from "vue"
 
 const activeCard = ref(false)
+defineEmits('selectCard')
 
-const selectCard = () => {
-    activeCard.value = !activeCard.value;
-}
 </script>

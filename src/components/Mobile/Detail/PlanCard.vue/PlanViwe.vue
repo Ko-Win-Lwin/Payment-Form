@@ -9,7 +9,7 @@
       <div v-for="plan in plans" :key="plan">
         <PlanCard>
           <img :src="getImageUrl(plan['name'])" alt="">
-          <template #planName>{{ plan['name'] }}</template>
+          <template #planName>${{ plan['name'] }}</template>
           <template #planPrice>
             <p v-if="isMonthly">${{ plan['price']}}/mo</p>
             <p v-else>${{ plan['price'] * 10}}/yr</p>

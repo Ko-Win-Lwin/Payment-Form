@@ -131,9 +131,11 @@ const validateUserInfo = () => {
         emailError.value = false
         phoneError.value = false
 
-        userStore.$state.user.name = userName.value;
-        userStore.$state.user.email = userEmail.value;
-        userStore.$state.user.phone = userPhone.value;
+        userStore.$state.user.info = {
+            "name" : userName.value,
+            "email" : userEmail.value,
+            "phone" : userPhone.value,
+        }
         currentStep.nextStep()
     }
 }
