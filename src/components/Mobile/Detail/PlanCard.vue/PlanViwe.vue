@@ -7,7 +7,7 @@
 
     <div class="mt-5 w-full flex flex-col gap-3" >
       <div v-for="plan in plans" :key="plan">
-        <PlanCard>
+        <PlanCard :plan="plan" :isMonthly="isMonthly">
           <img :src="getImageUrl(plan['name'])" alt="">
           <template #planName>${{ plan['name'] }}</template>
           <template #planPrice>
@@ -41,17 +41,14 @@
         </div>
     </div>
   </div>
-  
-
-    
-
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import PlanCard from './PlanCard.vue';
 import BackBtn from '../../../BackBtn.vue';
 import NextBtn from '../../../NextBtn.vue';
+import { useUserStore } from '../../../../stores/user';
 
 const plans = ref([
   { 'name' : 'arcade', 'price' : 9 },
@@ -63,10 +60,31 @@ const getImageUrl = (img) => {
   return `/src/assets/images/icon-${img}.svg`
 }
 
+const choosedPlans = ref([])
 const isMonthly = ref(true);
 
 const toggleMonthAndYear = () => {
   isMonthly.value = !isMonthly.value
+}
+
+const userStore = useUserStore();
+const infoSubmit = () => {
+  if (!isMonthly.value) {
+    choosedPlans.value = computed(() => {
+    const monthlyPlan = plans.value.map(plan => {
+      return { ...plan, price: plan.price * 10 }
+    })
+
+    return monthlyPlan.filter(plan => plan.isSelected )
+  })
+  }
+
+  else {
+    choosedPlans.value = computed(() => {
+      return plans.value.filter(plan => plan.isSelected )
+    })
+  }
+  userStore.$state.user.plan = choosedPlans.value
 }
 </script>
 

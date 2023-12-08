@@ -1,5 +1,5 @@
 <template>
-    <div  @click="$emit('selectCard')" class="border rounded-lg  px-3 py-5 flex items-center gap-5" :class="{'border-blue-900': activeCard}">
+    <div  @click="selectCard(props.plan)" class="border rounded-lg  px-3 py-5 flex items-center gap-5" :class="{ 'border-blue-900': activeCard }">
         <slot></slot>
 
         <div class="">
@@ -18,6 +18,11 @@
 import { ref } from "vue"
 
 const activeCard = ref(false)
-defineEmits('selectCard')
+const props = defineProps(['plan', 'selectCard'])
+
+const selectCard = (x) => {
+    x.isSelected = !x.isSelected
+    activeCard.value = !activeCard.value
+}
 
 </script>
