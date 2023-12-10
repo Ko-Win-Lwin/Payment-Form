@@ -11,8 +11,13 @@
           <img :src="getImageUrl(plan['name'])" alt="">
           <template #planName>${{ plan['name'] }}</template>
           <template #planPrice>
-            <p v-if="isMonthly">${{ plan['price']}}/mo</p>
-            <p v-else>${{ plan['price'] * 10}}/yr</p>
+            <div v-if="isMonthly">
+              <p >${{ plan['price']}}/mo</p>
+            </div>
+            <div v-else>
+              <p>${{ plan['price'] * 10}}/yr</p>
+              <p class="text-slate-900 font-normal">2 months free</p>
+            </div>
           </template>
         </PlanCard>
       </div>
@@ -32,10 +37,10 @@
     </div>
 
 
-      <div class="flex justify-center items-center mt-[49px]  absolute right-0 w-full">
-        <div class="flex w-full h-full">
+      <div class="flex justify-between items-center fixed bottom-5 left-0 right-0 w-full">
+        <div class="flex justify-around items-center gap-20 w-full h-full">
             <BackBtn></BackBtn>
-            <div class="ml-auto">
+            <div class="">
                 <NextBtn @infoSubmit="infoSubmit"></NextBtn>
             </div>
         </div>
@@ -85,6 +90,7 @@ const infoSubmit = () => {
     })
   }
   userStore.$state.user.plan = choosedPlans.value
+
 }
 </script>
 

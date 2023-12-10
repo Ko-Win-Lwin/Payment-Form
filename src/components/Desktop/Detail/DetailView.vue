@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="relative">
     <div v-if="currentStep.$state.step == 1">
       <YourInfo></YourInfo>
     </div>

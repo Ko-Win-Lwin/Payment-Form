@@ -51,7 +51,10 @@
 
 
 
-    <div class="flex justify-center items-center mt-[96px] absolute right-0 w-full">
+    
+  </div>
+
+  <div class="flex justify-center items-center fixed bottom-5 right-5 w-full">
         <div class="flex w-full  h-full">
             <BackBtn></BackBtn>
             <div class="ml-auto">
@@ -59,7 +62,6 @@
             </div>
         </div>
     </div>
-  </div>
 
     
 

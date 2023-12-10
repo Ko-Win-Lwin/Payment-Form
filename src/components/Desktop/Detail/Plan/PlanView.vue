@@ -1,5 +1,5 @@
 <template>
-    <div class="mt-10 w-[500px] pr-16 ">
+    <div class="mt-10 w-[500px] pr-16 relative">
       <header>          
           <h1 class="text-3xl font-bold tracking-wide text-slate-700">Select your plan</h1>
           <p class="text-slate-500 mt-2">You have the option of monthly or yearly billing.</p>
@@ -14,8 +14,13 @@
                 <span>{{ plan['name'] }}</span>
               </template>
               <template #planPrice>
-                <p v-if="isMonthly" >${{ plan['price'] }}/mo</p>
-                <p v-else>${{ plan['price'] * 10 }}/yr</p>
+                <div v-if="isMonthly">
+                  <p >${{ plan['price']}}/mo</p>
+                </div>
+                <div v-else>
+                  <p>${{ plan['price'] * 10}}/yr</p>
+                  <p class="text-slate-900 font-normal">2 months free</p>
+                </div>
               </template>
             </PlanCard>
           </div>
@@ -35,13 +40,17 @@
         </div>
       </div>
 
-      <div class="mt-32 flex justify-between items-center ">
-        <BackBtn></BackBtn>
-        <div class="ml-auto">
-          <NextBtn @infoSubmit="infoSubmit"></NextBtn>
+      <div class="mt-28 flex justify-between items-center absolute ">
+        <div class="flex gap-56 justify-around items-center ">
+          <BackBtn></BackBtn>
+          <div class=''>
+            <NextBtn @infoSubmit="infoSubmit"></NextBtn>
+          </div>
         </div>
       </div>
     </div>
+
+    
 </template>
 
   
