@@ -54,6 +54,7 @@ import PlanCard from './PlanCard.vue';
 import BackBtn from '../../../BackBtn.vue';
 import NextBtn from '../../../NextBtn.vue';
 import { useUserStore } from '../../../../stores/user';
+import { useStepStore } from '../../../../stores/step';
 
 const plans = ref([
   { 'name' : 'arcade', 'price' : 9 },
@@ -72,6 +73,8 @@ const toggleMonthAndYear = () => {
 }
 
 const userStore = useUserStore();
+const stepStore = useStepStore()
+
 const infoSubmit = () => {
   if (!userStore.$state.isMonthly) {
     choosedPlans.value = computed(() => {
@@ -89,7 +92,7 @@ const infoSubmit = () => {
     })
   }
   userStore.$state.user.plan = choosedPlans.value
-
+  stepStore.nextStep()
 }
 </script>
 

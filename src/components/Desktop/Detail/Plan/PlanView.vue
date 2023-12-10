@@ -57,6 +57,7 @@
 <script setup>
 
 import { computed, onMounted, ref } from 'vue';
+import { useStepStore } from '../../../../stores/step';
 import { useUserStore } from '../../../../stores/user';
 import BackBtn from '../../../BackBtn.vue';
 import NextBtn from '../../../NextBtn.vue';
@@ -82,6 +83,7 @@ const toggleMonthAndYear = () => {
 
 
 const userStore = useUserStore();
+const stepStore = useStepStore();
 
 const infoSubmit = () => {
   if (!userStore.$state.isMonthly) {
@@ -100,9 +102,8 @@ const infoSubmit = () => {
     })
   }
   userStore.$state.user.plan = choosedPlans.value
+  stepStore.nextStep()
 }
 
-onMounted(() => {
-  console.log(userStore.$state.isMonthly)
-})
+
 </script>

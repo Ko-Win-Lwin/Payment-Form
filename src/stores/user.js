@@ -4,11 +4,7 @@ export const useUserStore = defineStore('user', {
     state: () => ({
         isMonthly: true,
 
-        user: {
-            // plan: [
-            //     { isMonthly : true }
-            // ]
-        }
+        user: {}
     }),
 
     actions: {
