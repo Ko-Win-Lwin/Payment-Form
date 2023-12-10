@@ -1,5 +1,5 @@
 <template>
-    <div @click="selectCard(props.plan)" class="border rounded-md w-[130px] px-3 py-4" :class="{'border-blue-900': activeCard }">
+    <div @click="selectCard(props.plan)" class="border rounded-md w-[130px] h-[160px] px-3 py-4" :class="{'border-blue-900': activeCard }">
         <slot></slot>
 
         <div class="mt-10">

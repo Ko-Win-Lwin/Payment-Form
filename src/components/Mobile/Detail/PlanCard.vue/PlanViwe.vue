@@ -11,7 +11,7 @@
           <img :src="getImageUrl(plan['name'])" alt="">
           <template #planName>${{ plan['name'] }}</template>
           <template #planPrice>
-            <div v-if="isMonthly">
+            <div v-if="userStore.$state.isMonthly">
               <p >${{ plan['price']}}/mo</p>
             </div>
             <div v-else>
@@ -66,15 +66,14 @@ const getImageUrl = (img) => {
 }
 
 const choosedPlans = ref([])
-const isMonthly = ref(true);
 
 const toggleMonthAndYear = () => {
-  isMonthly.value = !isMonthly.value
+  userStore.togglePlan()
 }
 
 const userStore = useUserStore();
 const infoSubmit = () => {
-  if (!isMonthly.value) {
+  if (!userStore.$state.isMonthly) {
     choosedPlans.value = computed(() => {
     const monthlyPlan = plans.value.map(plan => {
       return { ...plan, price: plan.price * 10 }

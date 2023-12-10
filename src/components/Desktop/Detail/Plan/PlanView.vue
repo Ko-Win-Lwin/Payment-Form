@@ -8,13 +8,13 @@
       <div class="mt-10">
         <div class="flex justify-between items-center">
           <div v-for="plan in plans" :key="plan">
-            <PlanCard  :plan="plan" :isMonthly="isMonthly">
+            <PlanCard  :plan="plan">
               <img :src="getImageUrl(plan['name'])"  alt="" class="w-[40px]">
               <template #planName>
                 <span>{{ plan['name'] }}</span>
               </template>
               <template #planPrice>
-                <div v-if="isMonthly">
+                <div v-if="userStore.$state.isMonthly">
                   <p >${{ plan['price']}}/mo</p>
                 </div>
                 <div v-else>
@@ -56,7 +56,7 @@
   
 <script setup>
 
-import { computed, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { useUserStore } from '../../../../stores/user';
 import BackBtn from '../../../BackBtn.vue';
 import NextBtn from '../../../NextBtn.vue';
@@ -74,17 +74,17 @@ const plans = ref([
 ])
 
 const choosedPlans = ref([])
-const isMonthly = ref(true);
 
 const toggleMonthAndYear = () => {
-  isMonthly.value = !isMonthly.value
+  userStore.togglePlan()
+  console.log(userStore.$state.isMonthly)
 }
 
 
 const userStore = useUserStore();
 
 const infoSubmit = () => {
-  if (!isMonthly.value) {
+  if (!userStore.$state.isMonthly) {
     choosedPlans.value = computed(() => {
     const monthlyPlan = plans.value.map(plan => {
       return { ...plan, price: plan.price * 10 }
@@ -102,4 +102,7 @@ const infoSubmit = () => {
   userStore.$state.user.plan = choosedPlans.value
 }
 
+onMounted(() => {
+  console.log(userStore.$state.isMonthly)
+})
 </script>
