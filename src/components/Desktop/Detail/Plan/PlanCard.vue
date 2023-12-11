@@ -1,5 +1,5 @@
 <template>
-    <div @click="selectCard(props.plan)" class="border rounded-md w-[130px] h-[160px] px-3 py-4" :class="{'border-blue-900': activeCard }">
+    <div @click="selectCard(props.plan)" class="border rounded-md w-[130px] h-[160px] px-3 py-4" :class="{'border-blue-900': props.plan.isSelected }">
         <slot></slot>
 
         <div class="mt-10">
@@ -15,16 +15,19 @@
 </template>
 
 <script setup>
-import { ref } from "vue"
 
-const activeCard = ref(false)
-const props = defineProps(['plan'])
+const props = defineProps(['plan', 'plans'])
+
 
 const selectCard = (x) => {
-    x.isSelected = !x.isSelected
-    activeCard.value = !activeCard.value
+    props.plans.forEach(plan => {
+        if (plan.name == x.name) {
+            x.isSelected = !x.isSelected
+        } else {
+            plan.isSelected = false
+        }
+    });
 }
-
 
 
 </script>

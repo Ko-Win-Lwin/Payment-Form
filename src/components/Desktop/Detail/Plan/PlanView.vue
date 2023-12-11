@@ -8,7 +8,7 @@
       <div class="mt-10">
         <div class="flex justify-between items-center">
           <div v-for="plan in plans" :key="plan">
-            <PlanCard  :plan="plan">
+            <PlanCard  :plan="plan" :plans="plans">
               <img :src="getImageUrl(plan['name'])"  alt="" class="w-[40px]">
               <template #planName>
                 <span>{{ plan['name'] }}</span>

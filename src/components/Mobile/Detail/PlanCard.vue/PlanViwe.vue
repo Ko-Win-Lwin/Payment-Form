@@ -7,7 +7,7 @@
 
     <div class="mt-5 w-full flex flex-col gap-3" >
       <div v-for="plan in plans" :key="plan">
-        <PlanCard :plan="plan" :isMonthly="isMonthly">
+        <PlanCard :plan="plan" :isMonthly="isMonthly" :plans="plans">
           <img :src="getImageUrl(plan['name'])" alt="">
           <template #planName>${{ plan['name'] }}</template>
           <template #planPrice>
