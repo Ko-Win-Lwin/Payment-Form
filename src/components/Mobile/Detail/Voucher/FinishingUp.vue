@@ -1,7 +1,5 @@
 <template>
-    <div>
-        {{ userStore.$state.user }}
-    </div>
+    
 </template>
 
 <script setup>
