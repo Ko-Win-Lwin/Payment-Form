@@ -18,7 +18,7 @@
 import { ref } from "vue"
 
 const activeCard = ref(false)
-const props = defineProps(['plan', 'selectCard'])
+const props = defineProps(['plan'])
 
 const selectCard = (x) => {
     x.isSelected = !x.isSelected

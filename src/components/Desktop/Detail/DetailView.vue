@@ -9,6 +9,9 @@
     <div v-else-if="currentStep.$state.step == 3">
       <AddOnview></AddOnview>
     </div>
+    <div v-else-if="currentStep.$state.step == 4">
+      <FinishingUp></FinishingUp>
+    </div>
   </div>
 </template>
 
@@ -17,6 +20,7 @@ import YourInfo from './YourInfo.vue';
 import { useStepStore } from '../../../stores/step';
 import PlanView from '../Detail/Plan/PlanView.vue';
 import AddOnview from './Add/AddOnview.vue';
+import FinishingUp from './Voucher/FinishingUp.vue';
 
 const currentStep = useStepStore()
 

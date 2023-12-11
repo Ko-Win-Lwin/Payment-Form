@@ -1,5 +1,5 @@
 <template>
-    <div class="mt-10 w-[500px] pr-16 relative">
+    <div class="mt-10 w-[500px] pr-16 ">
       <header>          
           <h1 class="text-3xl font-bold tracking-wide text-slate-700">Select your plan</h1>
           <p class="text-slate-500 mt-2">You have the option of monthly or yearly billing.</p>
@@ -40,8 +40,8 @@
         </div>
       </div>
 
-      <div class="mt-28 flex justify-between items-center absolute ">
-        <div class="flex gap-56 justify-around items-center ">
+      <div class="absolute bottom-10">
+        <div class="flex gap-48 justify-around items-center ">
           <BackBtn></BackBtn>
           <div class=''>
             <NextBtn @infoSubmit="infoSubmit"></NextBtn>
@@ -49,8 +49,6 @@
         </div>
       </div>
     </div>
-
-    
 </template>
 
   
@@ -85,24 +83,28 @@ const toggleMonthAndYear = () => {
 const userStore = useUserStore();
 const stepStore = useStepStore();
 
+const validatePlans = () => {
+
+}
+
 const infoSubmit = () => {
-  if (!userStore.$state.isMonthly) {
-    choosedPlans.value = computed(() => {
-    const monthlyPlan = plans.value.map(plan => {
-      return { ...plan, price: plan.price * 10 }
-    })
+    if (!userStore.$state.isMonthly) {
+      choosedPlans.value = computed(() => {
+      const monthlyPlan = plans.value.map(plan => {
+        return { ...plan, price: plan.price * 10 }
+      })
 
-    return monthlyPlan.filter(plan => plan.isSelected )
-  })
-  }
+      return monthlyPlan.filter(plan => plan.isSelected )
+      })
+    }
 
-  else {
-    choosedPlans.value = computed(() => {
-      return plans.value.filter(plan => plan.isSelected )
-    })
-  }
-  userStore.$state.user.plan = choosedPlans.value
-  stepStore.nextStep()
+    else {
+      choosedPlans.value = computed(() => {
+        return plans.value.filter(plan => plan.isSelected )
+      })
+    }
+    userStore.$state.user.plan = choosedPlans.value
+    stepStore.nextStep()
 }
 
 
