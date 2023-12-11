@@ -23,7 +23,7 @@
                         <p class="text-sm text-blue-900">+${{ add['price'] }}/mo</p>
                     </div>
                     <div v-else>
-                        <p class="text-sm text-blue-900">+${{ add['price'] }}/yr</p>
+                        <p class="text-sm text-blue-900">+${{ add['price'] * 10}}/yr</p>
                     </div>
                 </template>
             </AddOnCard>

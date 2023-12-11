@@ -49,7 +49,7 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import PlanCard from './PlanCard.vue';
 import BackBtn from '../../../BackBtn.vue';
 import NextBtn from '../../../NextBtn.vue';
@@ -94,6 +94,10 @@ const infoSubmit = () => {
   userStore.$state.user.plan = choosedPlans.value
   stepStore.nextStep()
 }
+
+onMounted(() => {
+    userStore.$state.isMonthly = true
+  })
 </script>
 
 <style>
