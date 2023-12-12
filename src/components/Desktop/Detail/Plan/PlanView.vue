@@ -72,7 +72,7 @@ const plans = ref([
   { 'name' : 'pro', 'price' : 15 , 'isSelected' : false,  } 
 ])
 
-const choosedPlans = ref([])
+const choosedPlans = ref({})
 
 const toggleMonthAndYear = () => {
   userStore.togglePlan()
@@ -88,14 +88,15 @@ const validatePlans = () => {
 }
 
 const infoSubmit = () => {
+    const monthlyPlan = plans.value.map(plan => {
+      return {...plan, price: plan.price * 10}
+    })
+
     if (!userStore.$state.isMonthly) {
       choosedPlans.value = computed(() => {
-      const monthlyPlan = plans.value.map(plan => {
-        return { ...plan, price: plan.price * 10 }
+        return monthlyPlan.filter(plan => plan.isSelected)
       })
 
-      return monthlyPlan.filter(plan => plan.isSelected )
-      })
     }
 
     else {

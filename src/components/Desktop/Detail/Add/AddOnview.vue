@@ -1,5 +1,6 @@
 <template>
     <div class="mt-10 w-[500px] pr-16">
+      {{ choosedAdds }}
       <header>          
           <h1 class="text-3xl font-bold tracking-wide text-slate-700">Pick add-ons</h1>
           <p class="text-slate-500 mt-2">Add-ons help enhance your gaming experience.</p>
@@ -18,13 +19,8 @@
 
                 
                 <template #addPrice>
-                    
-                    <div v-if="userStore.$state.isMonthly">
-                        <p class="text-sm text-blue-900">+${{ add['price'] }}/mo</p>
-                    </div>
-                    <div v-else>
-                        <p class="text-sm text-blue-900">+${{ add['price'] * 10}}/yr</p>
-                    </div>
+                    <p v-if="userStore.$state.isMonthly" class="text-sm text-blue-900">+${{ add['price'] }}/mo</p>
+                    <p v-else class="text-sm text-blue-900">+${{ add['price'] * 10}}/yr</p>
                 </template>
             </AddOnCard>
           </div>
@@ -40,6 +36,8 @@
         </div>
       </div>
     </div>
+
+    
 </template>
 
 <script setup>
@@ -60,28 +58,30 @@ const addOns = ref([
 
 const choosedAdds = ref([])
 
-const validateAdds = () => {}
+const monthlyPlan = ref([])
+
 
 
 const infoSubmit = () => {
-  if (!userStore.$state.isMonthly) {
-    choosedAdds.value = computed(() => {
-    const monthlyAdds = addOns.value.map(add => {
-      return { ...add, price: add.price * 10 }
-    })
-
-    return monthlyAdds.filter(add => add.isSelected )
+  monthlyPlan.value = addOns.value.map(add => {
+      return {...add, price: add.price * 10}
   })
-  }
 
-  else {
-    choosedAdds.value = computed(() => {
-      return addOns.value.filter(add => add.isSelected )
-    })
+  if (!userStore.$state.isMonthly) {
+      choosedAdds.value = computed(() => {
+        return monthlyPlan.value.filter(add => add.isSelected)
+      })
+  } else {
+      choosedAdds.value = computed(() => {
+        return addOns.value.filter(add => add.isSelected)
+      })
   }
 
   userStore.$state.user.addOns = choosedAdds.value
   stepStore.nextStep()
 }
 
+onMounted(() => {
+  console.log(choosedAdds.value)
+})
 </script>
