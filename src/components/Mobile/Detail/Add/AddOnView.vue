@@ -59,29 +59,50 @@
 
   
   const choosedAdds = ref([])
+  const monthlyAdd = ref([])
   
   const userStore = useUserStore();
   const stepStore = useStepStore()
   
-  const infoSubmit = () => {
-    if (!userStore.$state.isMonthly) {
+const infoSubmit = () => {
+  monthlyAdd.value = addOns.value.map(add => {
+      return {...add, price: add.price * 10}
+  })
+
+  if (!userStore.$state.isMonthly) {
       choosedAdds.value = computed(() => {
-      const monthlyAdd = addOns.value.map(add => {
-        return { ...add, price: add.price * 10 }
+        return monthlyAdd.value.filter(add => add.isSelected)
       })
-  
-      return monthlyAdd.filter(add => add.isSelected )
-    })
-    }
-  
-    else {
+  } else {
       choosedAdds.value = computed(() => {
-        return addOns.value.filter(add => add.isSelected )
+        return addOns.value.filter(add => add.isSelected)
       })
-    }
-    userStore.$state.user.addOns = choosedAdds.value
-    stepStore.nextStep()
   }
+
+  userStore.$state.user.addOns = choosedAdds.value
+  stepStore.nextStep()
+}
+
+
+  // const infoSubmit = () => {
+  //   if (!userStore.$state.isMonthly) {
+  //     choosedAdds.value = computed(() => {
+  //     const monthlyAdd = addOns.value.map(add => {
+  //       return { ...add, price: add.price * 10 }
+  //     })
+  
+  //     return monthlyAdd.filter(add => add.isSelected )
+  //   })
+  //   }
+  
+  //   else {
+  //     choosedAdds.value = computed(() => {
+  //       return addOns.value.filter(add => add.isSelected )
+  //     })
+  //   }
+  //   userStore.$state.user.addOns = choosedAdds.value
+  //   stepStore.nextStep()
+  // }
 
 
 

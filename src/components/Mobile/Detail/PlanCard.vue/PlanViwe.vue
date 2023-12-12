@@ -44,7 +44,7 @@
                 <NextBtn @infoSubmit="infoSubmit"></NextBtn>
             </div>
         </div>
-    </div>
+      </div>
   </div>
 </template>
 
@@ -67,6 +67,8 @@ const getImageUrl = (img) => {
 }
 
 const choosedPlans = ref([])
+const monthlyPlan = ref([])
+
 
 const toggleMonthAndYear = () => {
   userStore.togglePlan()
@@ -76,28 +78,49 @@ const userStore = useUserStore();
 const stepStore = useStepStore()
 
 const infoSubmit = () => {
-  if (!userStore.$state.isMonthly) {
-    choosedPlans.value = computed(() => {
-    const monthlyPlan = plans.value.map(plan => {
-      return { ...plan, price: plan.price * 10 }
+    monthlyPlan.value = plans.value.map(plan => {
+      return {...plan, price: plan.price * 10}
     })
 
-    return monthlyPlan.filter(plan => plan.isSelected )
-  })
-  }
+    if (!userStore.$state.isMonthly) {
+      choosedPlans.value = computed(() => {
+        return monthlyPlan.value.filter(plan => plan.isSelected)
+      })
 
-  else {
-    choosedPlans.value = computed(() => {
-      return plans.value.filter(plan => plan.isSelected )
-    })
-  }
-  userStore.$state.user.plan = choosedPlans.value
-  stepStore.nextStep()
+    }
+
+    else {
+      choosedPlans.value = computed(() => {
+        return plans.value.filter(plan => plan.isSelected )
+      })
+    }
+    userStore.$state.user.plan = choosedPlans.value
+    stepStore.nextStep()
 }
+
+// const infoSubmit = () => {
+//   if (!userStore.$state.isMonthly) {
+//     choosedPlans.value = computed(() => {
+//     const monthlyPlan = plans.value.map(plan => {
+//       return { ...plan, price: plan.price * 10 }
+//     })
+
+//     return monthlyPlan.filter(plan => plan.isSelected )
+//   })
+//   }
+
+//   else {
+//     choosedPlans.value = computed(() => {
+//       return plans.value.filter(plan => plan.isSelected )
+//     })
+//   }
+//   userStore.$state.user.plan = choosedPlans.value
+//   stepStore.nextStep()
+// }
 
 onMounted(() => {
     userStore.$state.isMonthly = true
-  })
+})
 </script>
 
 <style>

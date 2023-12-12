@@ -1,6 +1,5 @@
 <template>
     <div class="mt-10 w-[500px] pr-16">
-      {{ choosedAdds }}
       <header>          
           <h1 class="text-3xl font-bold tracking-wide text-slate-700">Pick add-ons</h1>
           <p class="text-slate-500 mt-2">Add-ons help enhance your gaming experience.</p>

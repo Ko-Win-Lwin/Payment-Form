@@ -72,7 +72,8 @@ const plans = ref([
   { 'name' : 'pro', 'price' : 15 , 'isSelected' : false,  } 
 ])
 
-const choosedPlans = ref({})
+const choosedPlans = ref([])
+const monthlyPlan = ref([])
 
 const toggleMonthAndYear = () => {
   userStore.togglePlan()
@@ -83,18 +84,16 @@ const toggleMonthAndYear = () => {
 const userStore = useUserStore();
 const stepStore = useStepStore();
 
-const validatePlans = () => {
 
-}
 
 const infoSubmit = () => {
-    const monthlyPlan = plans.value.map(plan => {
+    monthlyPlan.value = plans.value.map(plan => {
       return {...plan, price: plan.price * 10}
     })
 
     if (!userStore.$state.isMonthly) {
       choosedPlans.value = computed(() => {
-        return monthlyPlan.filter(plan => plan.isSelected)
+        return monthlyPlan.value.filter(plan => plan.isSelected)
       })
 
     }
@@ -108,5 +107,9 @@ const infoSubmit = () => {
     stepStore.nextStep()
 }
 
+
+onMounted(() => {
+    userStore.$state.isMonthly = true
+})
 
 </script>
