@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-blue-50 w-[100vw] h-[90vh]  grid place-items-center relative">
+    <div class="bg-blue-50  grid place-items-center relative" id="blue_bg">
         <div class="absolute top-0 left-0">
             <SideBar></SideBar>
         </div>
