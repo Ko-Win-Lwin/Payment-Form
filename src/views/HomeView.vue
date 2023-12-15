@@ -2,7 +2,7 @@
   <div v-if="responsiveStore.isMobile">
     <MobileView></MobileView>
   </div>
-  <div v-else>
+  <div v-else >
     <DesktopView></DesktopView>
   </div>
 </template>

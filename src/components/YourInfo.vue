@@ -1,6 +1,6 @@
 <template>
-  <div class="relative">
-    <header class="px-2">
+  <div class="relative lg:mt-10 lg:w-[500px] lg:pr-16">
+    <header>
         <h1 class="text-2xl font-bold tracking-wide text-slate-600">Personal info</h1>
         <p class="text-slate-500 mt-2">Please provide your name, email address and phone number.</p>
     </header>
@@ -54,7 +54,7 @@
     
   </div>
 
-  <div class="flex justify-center items-center fixed bottom-5 right-5 w-full">
+    <div class="flex justify-center items-center fixed bottom-5 right-5 w-full">
         <div class="flex w-full  h-full">
             <BackBtn></BackBtn>
             <div class="ml-auto">
@@ -69,10 +69,10 @@
 
 <script setup>
 import { ref } from "vue"
-import { useUserStore } from "../../../stores/user";
-import { useStepStore } from "../../../stores/step";
-import NextBtn from "../../NextBtn.vue";
-import BackBtn from "../../BackBtn.vue";
+import { useUserStore } from "../stores/user";
+import { useStepStore } from "../stores/step";
+import NextBtn from "./NextBtn.vue";
+import BackBtn from "./BackBtn.vue";
 
 const userStore = useUserStore()
 const currentStep = useStepStore()
@@ -146,6 +146,9 @@ const validateUserInfo = () => {
 const infoSubmit = () => {
     validateUserInfo()
 }
+
+
+
 
 </script>
 

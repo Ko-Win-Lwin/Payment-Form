@@ -18,7 +18,7 @@
 <script setup>
 import { useStepStore } from '../../../stores/step';
 
-import YourInfo from './YourInfo.vue';
+import YourInfo from '../../YourInfo.vue';
 import PlanView from '../Detail/Plan/PlanView.vue';
 import AddOnview from './Add/AddOnview.vue';
 import FinishingUp from './Voucher/FinishingUp.vue';

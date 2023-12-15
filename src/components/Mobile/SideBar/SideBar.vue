@@ -45,7 +45,7 @@
 
 <script setup>
 import { useStepStore } from '../../../stores/step';
-import SideBarTabVue from '../../SideBarTab.vue';
+import SideBarTab from '../../SideBarTab.vue';
 
 const currentStep = useStepStore()
 </script>
