@@ -1,9 +1,9 @@
 <template>
-    <div @click="selectCard(props.add)" class="border rounded-md w-[95%] px-5 py-3 flex items-center" :class="{'border-blue-900': activeCard }">
+    <div @click="selectCard(props.add)" class="border rounded-md lg:w-[95%] lg:px-5 px-3 py-3 flex items-center" :class="{'border-blue-900': activeCard }">
         <div class="">
             <input type="checkbox" class="w-[18px] h-[18px] accent-blue-800" v-model="activeCard">
         </div>
-        <div class="ml-8 flex flex-col">
+        <div class="ml-4 lg:ml-8 flex flex-col">
             <slot name="addName">   
             </slot>
             <slot name="addDetail"></slot>

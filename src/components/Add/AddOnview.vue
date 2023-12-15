@@ -1,11 +1,11 @@
 <template>
-    <div class="mt-10 w-[500px] pr-16">
-      <header>          
-          <h1 class="text-3xl font-bold tracking-wide text-slate-700">Pick add-ons</h1>
+    <div class="relative py-3 lg:py-0 lg:mt-10 lg:w-[500px] lg:pr-16">
+      <header class="px-2 lg:px-0">          
+          <h1 class="text-2xl lg:text-3xl font-bold tracking-wide text-slate-600">Pick add-ons</h1>
           <p class="text-slate-500 mt-2">Add-ons help enhance your gaming experience.</p>
       </header>
 
-      <div class="mt-10">
+      <div class="mt-5 lg:mt-10">
         <div class="flex flex-col gap-5">
           <div v-for="add in addOns" :key="add">
             <AddOnCard :add="add">
@@ -26,29 +26,44 @@
         </div>
       </div>
 
-      <div class="absolute bottom-10">
-        <div class="flex gap-48 justify-around items-center ">
-          <BackBtn></BackBtn>
-          <div class=''>
-            <NextBtn @infoSubmit="infoSubmit"></NextBtn>
-          </div>
+  
+
+    <div v-if="responsiveStore.$state.isMobile">
+      <div class="w-full fixed bottom-5 right-0 left-0">
+        <div class="flex justify-between items-center">
+            <BackBtn></BackBtn>
+            <div class="mr-5">
+                <NextBtn @infoSubmit="infoSubmit"></NextBtn>
+            </div>
         </div>
       </div>
     </div>
 
-    
+  <div v-else>
+    <div class="absolute bottom-10 right-16 left-0">
+        <div class="flex  justify-between items-center ">
+            <BackBtn></BackBtn>
+            <NextBtn @infoSubmit="infoSubmit"></NextBtn>
+        </div>
+      </div>
+  </div>
+  </div>
 </template>
 
 <script setup>
 import { computed, onMounted, ref } from 'vue';
-import { useStepStore } from '../../../../stores/step';
-import { useUserStore } from '../../../../stores/user';
-import AddOnCard from '../Add/AddOnCard.vue';
-import NextBtn from '../../../NextBtn.vue';
-import BackBtn from '../../../BackBtn.vue';
+import { useStepStore } from '../../stores/step';
+import { useUserStore } from '../../stores/user';
+import { useResponsiveStore } from '../../stores/responsive';
+
+import AddOnCard from './AddOnCard.vue';
+import NextBtn from '../NextBtn.vue';
+import BackBtn from '../BackBtn.vue';
 
 const stepStore = useStepStore()
 const userStore = useUserStore()
+const responsiveStore = useResponsiveStore()
+
 const addOns = ref([
   { 'name' : 'online service', 'detail': 'Access to multiplayer games',  'price' : 1, 'isSelected' : false },
   { 'name' : 'larger storage', 'detail': 'Extra 1TB of cloud save',  'price' : 2, 'isSelected' : false },
@@ -80,7 +95,4 @@ const infoSubmit = () => {
   stepStore.nextStep()
 }
 
-onMounted(() => {
-  console.log(choosedAdds.value)
-})
 </script>

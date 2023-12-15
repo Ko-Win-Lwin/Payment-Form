@@ -20,7 +20,7 @@ import { useStepStore } from '../../../stores/step';
 
 import YourInfo from '../../YourInfo.vue';
 import PlanView from "../../Plan/PlanViwe.vue"
-import AddOnView from './Add/AddOnView.vue';
+import AddOnView from "../../Add/AddOnview.vue"
 import FinishingUp from './Voucher/FinishingUp.vue';
 
 

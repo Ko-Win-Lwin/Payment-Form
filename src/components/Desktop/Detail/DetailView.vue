@@ -1,16 +1,16 @@
 <template>
   <div class="relative">
     <div v-if="currentStep.$state.step == 1">
-      <YourInfo></YourInfo>
+      <YourInfo/>
     </div>
     <div v-else-if="currentStep.$state.step == 2">
-      <PlanView></PlanView>
+      <PlanView/>
     </div>
     <div v-else-if="currentStep.$state.step == 3">
-      <AddOnview></AddOnview>
+      <AddOnView/>
     </div>
     <div v-else-if="currentStep.$state.step == 4">
-      <FinishingUp></FinishingUp>
+      <FinishingUp/>
     </div>
   </div>
 </template>
@@ -20,7 +20,7 @@ import { useStepStore } from '../../../stores/step';
 
 import YourInfo from '../../YourInfo.vue';
 import PlanView from '../../Plan/PlanViwe.vue'
-import AddOnview from './Add/AddOnview.vue';
+import AddOnView from '../../Add/AddOnview.vue';
 import FinishingUp from './Voucher/FinishingUp.vue';
 
 const currentStep = useStepStore()
