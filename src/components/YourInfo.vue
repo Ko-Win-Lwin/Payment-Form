@@ -12,7 +12,7 @@
                     <label for="name" class="text-slate-700  mb-2 ">Name</label>
                     <p class="text-red-400">This field is required</p>
                 </div>
-                <input @blur="checkName" v-model="userName" type="text" id="name" name="name" required autofocus class="outline-none px-2 py-3 border rounded-md w-full" placeholder="e.g Stephen King" :class="{'border-red-300': nameError}">
+                <input @blur="checkName" v-model="userName" type="text" id="name" name="name"  required autofocus class="outline-none px-2 py-3 border rounded-md w-full" placeholder="e.g Stephen King" :class="{'border-red-300': nameError}">
             </div>
             <div v-else class="flex flex-col">
                 <label for="name" class="text-slate-700  mb-2 ">Name</label>
@@ -48,34 +48,45 @@
             </div>
         </div>
     </form>
-
-
-
-    
   </div>
 
-    <div class="flex justify-center items-center fixed bottom-5 right-5 w-full">
+  <div v-if="responsiveStore.$state.isMobile">
+      <div class="flex justify-center items-center fixed bottom-5 right-5 w-full">
         <div class="flex w-full  h-full">
             <BackBtn></BackBtn>
             <div class="ml-auto">
                 <NextBtn @infoSubmit="infoSubmit"></NextBtn>
             </div>
         </div>
-    </div>
+      </div>
+  </div>
+
+  <div v-else>
+    <div class="absolute bottom-10 right-16">
+        <div class="flex gap-48 justify-around items-center ">
+          <div class=''>
+            <NextBtn @infoSubmit="infoSubmit"></NextBtn>
+          </div>
+        </div>
+      </div>
+  </div>
 
     
 
 </template>
 
 <script setup>
-import { ref } from "vue"
+import { onMounted, ref } from "vue"
 import { useUserStore } from "../stores/user";
 import { useStepStore } from "../stores/step";
+import { useResponsiveStore } from "../stores/responsive";
+
 import NextBtn from "./NextBtn.vue";
 import BackBtn from "./BackBtn.vue";
 
 const userStore = useUserStore()
 const currentStep = useStepStore()
+const responsiveStore = useResponsiveStore()
 
 const userName = ref('')
 const userEmail = ref('')
@@ -87,6 +98,7 @@ const phoneError = ref(false)
 
 const checkName = () => {
     if (userName.value) {
+        userStore.$state.user.info = { "name" : userName.value }
         nameError.value = false
     }
 
@@ -146,6 +158,10 @@ const validateUserInfo = () => {
 const infoSubmit = () => {
     validateUserInfo()
 }
+
+// onMounted( () => {
+//   window.addEventListener('resize', responsiveStore.updateResponsiveState)
+// })
 
 
 
