@@ -1,13 +1,13 @@
 <template>
-    <div @click="selectCard(props.plan)" class="border rounded-md w-[130px] h-[160px] px-3 py-4" :class="{'border-blue-900': props.plan.isSelected }">
+    <div @click="selectCard(props.plan)" class="border rounded-lg lg:rounded-md lg:w-[130px] lg:h-[160px] h-[80px] px-3 py-4 flex  lg:block gap-5 " :class="{'border-blue-900': props.plan.isSelected }">
         <slot></slot>
 
-        <div class="mt-10">
+        <div class="lg:mt-10">
             <div id="planName" class="font-bold text-sm text-slate-700">
                 <slot name="planName"></slot>
             </div>
 
-            <div id="planPrice" class="text-[12px] font-semibold text-slate-400">
+            <div id="planPrice" class="text-[13px] lg:text-[12px] font-semibold text-slate-400">
                 <slot name="planPrice"></slot>
             </div>
         </div>

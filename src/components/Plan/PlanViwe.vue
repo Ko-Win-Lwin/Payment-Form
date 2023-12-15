@@ -1,29 +1,31 @@
 <template>
-  <div class="relative">
+  <div class="relative lg:mt-10 lg:w-[500px] lg:pr-16">
     <header class="px-2">
         <h1 class="text-2xl font-bold tracking-wide text-slate-600">Select your plan</h1>
         <p class="text-slate-500 mt-2">You have the option of monthly or yearly billing.</p>
     </header>
 
-    <div class="mt-5 w-full flex flex-col gap-3" >
-      <div v-for="plan in plans" :key="plan">
-        <PlanCard :plan="plan" :isMonthly="isMonthly" :plans="plans">
-          <img :src="getImageUrl(plan['name'])" alt="">
-          <template #planName>${{ plan['name'] }}</template>
-          <template #planPrice>
-            <div v-if="userStore.$state.isMonthly">
-              <p >${{ plan['price']}}/mo</p>
-            </div>
-            <div v-else>
-              <p>${{ plan['price'] * 10}}/yr</p>
-              <p class="text-slate-900 font-normal">2 months free</p>
-            </div>
-          </template>
-        </PlanCard>
+    <div class="mt-5 flex flex-col gap-3" >
+      <div class="flex flex-col lg:flex-row gap-5">
+        <div v-for="plan in plans" :key="plan">
+          <PlanCard :plan="plan" :isMonthly="isMonthly" :plans="plans">
+            <img :src="getImageUrl(plan['name'])" alt="">
+            <template #planName>${{ plan['name'] }}</template>
+            <template #planPrice>
+              <div v-if="userStore.$state.isMonthly">
+                <p >${{ plan['price']}}/mo</p>
+              </div>
+              <div v-else>
+                <p>${{ plan['price'] * 10}}/yr</p>
+                <p class="text-slate-700 font-normal">2 months free</p>
+              </div>
+            </template>
+          </PlanCard>
+        </div>
       </div>
     </div>
 
-    <div class="bg-blue-50 mt-5 py-2 rounded-md">
+    <div class="bg-blue-50 lg:mt-10 mt-5 py-2 rounded-md">
         <div class="flex justify-center items-center gap-8">
           <p>Month</p>
           <div class="flex">
@@ -35,14 +37,24 @@
           <p>Year</p>
         </div>
     </div>
+  </div>
 
-
-      <div class="flex justify-between items-center fixed bottom-5 left-0 right-0 w-full">
-        <div class="flex justify-around items-center gap-20 w-full h-full">
+  <div v-if="responsiveStore.$state.isMobile">
+      <div class="w-full fixed bottom-5 right-0 left-0">
+        <div class="flex justify-between items-center">
             <BackBtn></BackBtn>
-            <div class="">
+            <div class="mr-5">
                 <NextBtn @infoSubmit="infoSubmit"></NextBtn>
             </div>
+        </div>
+      </div>
+  </div>
+
+  <div v-else>
+    <div class="absolute bottom-10 right-16 left-0">
+        <div class="flex  justify-between items-center ">
+            <BackBtn></BackBtn>
+            <NextBtn @infoSubmit="infoSubmit"></NextBtn>
         </div>
       </div>
   </div>
@@ -51,10 +63,11 @@
 <script setup>
 import { computed, onMounted, ref } from 'vue';
 import PlanCard from './PlanCard.vue';
-import BackBtn from '../../../BackBtn.vue';
-import NextBtn from '../../../NextBtn.vue';
-import { useUserStore } from '../../../../stores/user';
-import { useStepStore } from '../../../../stores/step';
+import BackBtn from '../BackBtn.vue';
+import NextBtn from '../NextBtn.vue';
+import { useUserStore } from '../../stores/user';
+import { useStepStore } from '../../stores/step';
+import { useResponsiveStore } from '../../stores/responsive';
 
 const plans = ref([
   { 'name' : 'arcade', 'price' : 9 },
@@ -76,6 +89,7 @@ const toggleMonthAndYear = () => {
 
 const userStore = useUserStore();
 const stepStore = useStepStore()
+const responsiveStore = useResponsiveStore()
 
 const infoSubmit = () => {
     monthlyPlan.value = plans.value.map(plan => {
@@ -98,25 +112,7 @@ const infoSubmit = () => {
     stepStore.nextStep()
 }
 
-// const infoSubmit = () => {
-//   if (!userStore.$state.isMonthly) {
-//     choosedPlans.value = computed(() => {
-//     const monthlyPlan = plans.value.map(plan => {
-//       return { ...plan, price: plan.price * 10 }
-//     })
 
-//     return monthlyPlan.filter(plan => plan.isSelected )
-//   })
-//   }
-
-//   else {
-//     choosedPlans.value = computed(() => {
-//       return plans.value.filter(plan => plan.isSelected )
-//     })
-//   }
-//   userStore.$state.user.plan = choosedPlans.value
-//   stepStore.nextStep()
-// }
 
 onMounted(() => {
     userStore.$state.isMonthly = true
