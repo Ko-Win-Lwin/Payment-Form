@@ -25,10 +25,9 @@
           </div>
         </div>
       </div>
+  </div>
 
-  
-
-    <div v-if="responsiveStore.$state.isMobile">
+  <div v-if="responsiveStore.$state.isMobile">
       <div class="w-full fixed bottom-5 right-0 left-0">
         <div class="flex justify-between items-center">
             <BackBtn></BackBtn>
@@ -39,15 +38,14 @@
       </div>
     </div>
 
-  <div v-else>
-    <div class="absolute bottom-10 right-16 left-0">
-        <div class="flex  justify-between items-center ">
-            <BackBtn></BackBtn>
-            <NextBtn @infoSubmit="infoSubmit"></NextBtn>
+    <div v-else>
+      <div class="absolute bottom-10 right-16 left-0">
+          <div class="flex  justify-between items-center ">
+              <BackBtn></BackBtn>
+              <NextBtn @infoSubmit="infoSubmit"></NextBtn>
+          </div>
         </div>
-      </div>
-  </div>
-  </div>
+    </div>
 </template>
 
 <script setup>

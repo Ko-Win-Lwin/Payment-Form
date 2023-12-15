@@ -1,11 +1,11 @@
 <template>
-  <div class="relative lg:mt-10 lg:w-[500px] lg:pr-16">
-    <header>
-        <h1 class="text-2xl font-bold tracking-wide text-slate-600">Personal info</h1>
+  <div class="relative lg:mt-10 lg:w-[500px] py-3 lg:pr-16">
+    <header class="px-2">
+        <h1 class="text-2xl lg:text-3xl font-bold tracking-wide text-slate-600">Personal info</h1>
         <p class="text-slate-500 mt-2">Please provide your name, email address and phone number.</p>
     </header>
 
-    <form @submit.prevent="" class="mt-10 flex flex-col gap-8 text-[12px] font-bold text-slate-600 ">
+    <form @submit.prevent="" class="px-2 mt-10 flex flex-col gap-8 text-[12px] font-bold text-slate-600 ">
         <div class="name">
             <div v-if="nameError">
                 <div class="flex justify-between items-center">

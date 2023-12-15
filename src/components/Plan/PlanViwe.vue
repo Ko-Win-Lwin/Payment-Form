@@ -1,7 +1,7 @@
 <template>
-  <div class="relative lg:mt-10 lg:w-[500px] lg:pr-16">
+  <div class="relative lg:mt-10 py-3 lg:w-[500px] lg:pr-16">
     <header class="px-2">
-        <h1 class="text-2xl font-bold tracking-wide text-slate-600">Select your plan</h1>
+        <h1 class="text-2xl lg:text-3xl font-bold tracking-wide text-slate-600">Select your plan</h1>
         <p class="text-slate-500 mt-2">You have the option of monthly or yearly billing.</p>
     </header>
 
