@@ -16,11 +16,13 @@
 </template>
 
 <script setup>
+import { useStepStore } from '../../../stores/step';
+
 import YourInfo from './YourInfo.vue';
 import PlanView from '../Detail/PlanCard.vue/PlanViwe.vue';
 import AddOnView from './Add/AddOnView.vue';
 import FinishingUp from './Voucher/FinishingUp.vue';
-import { useStepStore } from '../../../stores/step';
+
 
 const currentStep = useStepStore()
 </script>

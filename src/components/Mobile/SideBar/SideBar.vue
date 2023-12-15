@@ -2,7 +2,7 @@
   <div class="relative">
     <img src="../../../assets/images/bg-sidebar-mobile.svg  " alt="" class="relative">
 
-    <div class="absolute top-10 left-[50%] translate-x-[-50%] flex justify-center items-center">
+    <div class="absolute top-10 left-[50%] translate-x-[-50%] flex justify-center items-center gap-5">
 
       <SideBarTab>
         <div class="border text-white text-sm font-semibold rounded-full w-[35px] h-[35px] flex justify-center items-center"
@@ -45,7 +45,7 @@
 
 <script setup>
 import { useStepStore } from '../../../stores/step';
-import SideBarTab from './SideBarTab.vue';
+import SideBarTabVue from '../../SideBarTab.vue';
 
 const currentStep = useStepStore()
 </script>

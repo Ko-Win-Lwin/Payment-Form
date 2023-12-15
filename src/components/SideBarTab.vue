@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-between items-center gap-5 uppercase">
+  <div class="flex justify-between items-center lg:gap-5 uppercase">
         <div>
           <slot></slot>
         </div>
@@ -16,11 +16,3 @@
     </div>
 </template>
 
-<script setup>
-import { useStepStore } from '../../../stores/step';
-const currentStep = useStepStore()
-</script>
-
-<style>
-
-</style>

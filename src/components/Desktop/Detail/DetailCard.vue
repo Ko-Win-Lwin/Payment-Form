@@ -3,7 +3,6 @@
         <div class="bg-white p-5 rounded-[10px] flex justify-between gap-24">
             <SideBar></SideBar>
             <DetailView></DetailView>
-            
         </div>
     </div>
   
